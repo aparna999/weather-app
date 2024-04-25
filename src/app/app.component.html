@@ -1,24 +1,28 @@
 <div class="container">
-  <h1>Simple Weather</h1>
+  <div class="container__header">
+    <span class="container__header__text">Simple Weather</span>
+  </div>
   <div class="container__tab">
     <mat-tab-group>
       @for(city of cities; track city) {
       <mat-tab label="{{ city }}">
         <ng-template matTabContent>
-          <app-next-hours
-            class="container__group"
-            displayingCity="{{ city }}"
-          ></app-next-hours>
+          <div class="container__tabcontent">
+            <app-next-hours
+              class="container__group"
+              displayingCity="{{ city }}"
+            ></app-next-hours>
 
-          <app-next-five-days
-            class="container__group"
-            displayingCity="{{ city }}"
-          ></app-next-five-days>
+            <app-next-five-days
+              class="container__group"
+              displayingCity="{{ city }}"
+            ></app-next-five-days>
+          </div>
         </ng-template>
       </mat-tab>
       }
     </mat-tab-group>
   </div>
 
-  <div class="footer">Last updated on:</div>
+  <div class="container__footer">Last updated on:</div>
 </div>

@@ -18,8 +18,10 @@
       </p>
 
       <div class="card_container__desc">
-        <p>{{ item.dt | utcDateFormatter }}</p>
-        <p>{{ weatherItem.description | uppercase }}</p>
+        <p class="card_container__desc__dt">{{ item.dt | utcDateFormatter }}</p>
+        <p class="card_container__desc__txt">
+          {{ weatherItem.description | uppercase }}
+        </p>
       </div>
 
       }
