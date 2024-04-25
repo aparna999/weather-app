@@ -4,10 +4,16 @@
     <mat-tab-group>
       @for(city of cities; track city) {
       <mat-tab label="{{ city }}">
-        <ng-template matTabContent class="container__group">
-          <app-next-hours></app-next-hours>
+        <ng-template matTabContent>
+          <app-next-hours
+            class="container__group"
+            displayingCity="{{ city }}"
+          ></app-next-hours>
 
-          <app-next-five-days></app-next-five-days>
+          <app-next-five-days
+            class="container__group"
+            displayingCity="{{ city }}"
+          ></app-next-five-days>
         </ng-template>
       </mat-tab>
       }

@@ -1,17 +1,19 @@
-.tab {
-    padding-top: 15px;
+.container {
+    &__tab {
+        background-color: #fff;
+    }
 
     &__group {
-        padding: 25px;
+        padding:50px;
     }
 }
 
 h1 {
-    background-color: #005986;
+    background-color: #05336b;
     color: #fff;
 }
 
 .footer {
-        background-color: #005986;
+        background-color: #05336b;
             color: #fff;
 }

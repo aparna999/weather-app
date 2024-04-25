@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { WeatherData } from '../../models/weather-data';
+import { WeatherData } from '../models/weather-data';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -41,11 +41,7 @@ export class WeatherService {
 
   get5Days(city: string): Observable<WeatherData> {
     return this.http.get<WeatherData>(
-      this.api_base_url +
-        'Los Angeles' +
-        '&units=imperial' +
-        '&appid=' +
-        this.api_key
+      this.api_base_url + city + '&units=imperial' + '&appid=' + this.api_key
     );
   }
 }

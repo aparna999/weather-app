@@ -3,5 +3,37 @@
     <mat-card-title> Next 5 days </mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
-  <mat-card-content></mat-card-content>
+  <mat-card-content>
+    @if(weatherData$ | async; as data) { @for(item of data.list; track item; let
+    i=$index) { @if(i % 8=== 0) {
+    <div class="card_container__items">
+      @for(weatherItem of item.weather; track weatherItem) {
+      <p class="card_container__icon">
+        <img
+          [src]="
+            'https://openweathermap.org/img/wn/' + weatherItem.icon + '.png'
+          "
+          alt="Weather Icon"
+        />
+      </p>
+
+      <div class="card_container__desc">
+        <p>{{ item.dt | utcDateFormatter }}</p>
+        <p>{{ weatherItem.description | uppercase }}</p>
+      </div>
+
+      }
+
+      <div class="card_container__temps">
+        <p class="card_container__temps__items">
+          <span>{{ item.main.temp_max }}&deg;</span>
+        </p>
+        <p class="card_container__temps__items">
+          <span> {{ item.main.temp_min }}&deg;</span>
+        </p>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    } } }
+  </mat-card-content>
 </mat-card>
