@@ -5,7 +5,7 @@ import { WeatherService } from '../../services/weather.service';
 import { WeatherData } from '../../models/weather-data';
 import { Observable, of } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { UtcDateFormatterPipe } from '../../pipes/utc-date-formatter.pipe';
+import { UtcDateFormatterPipe } from '../../pipes/date/utc-date-formatter.pipe';
 
 @Component({
   selector: 'app-next-five-days',
@@ -27,8 +27,6 @@ export class NextFiveDaysComponent implements OnInit {
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
-    console.log(this.displayingCity);
-
     this.weatherData$ = this.weatherService.get5Days(this.displayingCity);
   }
 }

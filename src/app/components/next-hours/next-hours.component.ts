@@ -1,25 +1,35 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { WeatherService } from '../../services/weather.service';
-import { WeatherData } from '../../models/weather-data';
+import { CommonModule } from '@angular/common';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+
+import { WeatherService } from '../../services/weather.service';
+import { WeatherData } from '../../models/weather-data';
+import { DateTimeFormaterPipe } from '../../pipes/time/date-time-formater.pipe';
 
 @Component({
   selector: 'app-next-hours',
   standalone: true,
-  imports: [MatCardModule, MatDividerModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatDividerModule,
+    DateTimeFormaterPipe,
+  ],
   templateUrl: './next-hours.component.html',
   styleUrl: './next-hours.component.scss',
 })
 export class NextHoursComponent implements OnInit {
   @Input() displayingCity: string = '';
 
+  hourlyWeatherData!: WeatherData;
+
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
-    console.log(this.displayingCity);
-    // this.weatherService
-    //   .get5Days('')
-    //   .subscribe((res: WeatherData) => console.log(res.list[10].dt_txt));
+    this.weatherService.getHourly(this.displayingCity).subscribe((data) => {
+      this.hourlyWeatherData = data;
+    });
   }
 }

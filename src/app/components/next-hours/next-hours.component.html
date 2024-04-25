@@ -3,5 +3,37 @@
     <mat-card-title>Next hours</mat-card-title>
   </mat-card-header>
   <mat-divider></mat-divider>
-  <mat-card-content></mat-card-content>
+  <mat-card-content>
+    <div class="card_container__items">
+      @if(hourlyWeatherData) { @for(item of hourlyWeatherData.list; track item;
+      let last = $last) {
+      <div class="card_container__item">
+        <p>
+          <span> {{ item.main.temp }}&deg;</span>
+        </p>
+
+        <p>
+          <span class="card_container__item__humidity"
+            >{{ item.main.humidity }}%</span
+          >
+        </p>
+        @for(weatherItem of item.weather; track weatherItem) {
+        <p class="card_container__icon">
+          <img
+            [src]="
+              'https://openweathermap.org/img/wn/' + weatherItem.icon + '.png'
+            "
+            alt="Weather Icon"
+          />
+        </p>
+        }
+        <p>{{ item.dt_txt | dateTimeFormater }}</p>
+      </div>
+      @if(!last) {
+      <mat-divider [vertical]="true"></mat-divider>
+      } } @empty {
+      <div>No weather data available</div>
+      } }
+    </div>
+  </mat-card-content>
 </mat-card>
