@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+import { Observable, of } from 'rxjs';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+
 import { WeatherService } from '../../services/weather.service';
 import { WeatherData } from '../../models/weather-data';
-import { Observable, of } from 'rxjs';
-import { CommonModule } from '@angular/common';
 import { UtcDateFormatterPipe } from '../../pipes/date/utc-date-formatter.pipe';
 
 @Component({
