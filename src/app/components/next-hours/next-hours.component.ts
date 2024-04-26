@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { Observable, of } from 'rxjs';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 
@@ -23,13 +25,13 @@ import { DateTimeFormaterPipe } from '../../pipes/time/date-time-formater.pipe';
 export class NextHoursComponent implements OnInit {
   @Input() displayingCity: string = '';
 
-  hourlyWeatherData!: WeatherData;
+  hourlyWeatherData$: Observable<WeatherData> = of();
 
   constructor(private weatherService: WeatherService) {}
 
   ngOnInit() {
-    this.weatherService.getHourly(this.displayingCity).subscribe((data) => {
-      this.hourlyWeatherData = data;
-    });
+    this.hourlyWeatherData$ = this.weatherService.getHourly(
+      this.displayingCity
+    );
   }
 }

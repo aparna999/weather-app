@@ -5,8 +5,8 @@
   <mat-divider></mat-divider>
   <mat-card-content>
     <div class="card_container__items">
-      @if(hourlyWeatherData) { @for(item of hourlyWeatherData.list; track item;
-      let last = $last) {
+      @if(hourlyWeatherData$ | async; as data) { @for(item of data.list; track
+      item; let last = $last) {
       <div class="card_container__item">
         <p>
           <span> {{ item.main.temp }}&deg;</span>
