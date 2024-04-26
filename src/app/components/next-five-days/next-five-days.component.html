@@ -5,7 +5,10 @@
   <mat-divider></mat-divider>
   <mat-card-content>
     @if(weatherData$ | async; as data) { @for(item of data.list; track item; let
-    i=$index) { @if(i % 8=== 0) {
+    i=$index) {
+    <!--Api response has 40 data points, assuming data is available for every 3 hours (8 data points per day)-->
+    @if((i+1) % 8=== 0) {
+
     <div class="card_container__items">
       @for(weatherItem of item.weather; track weatherItem) {
       <p class="card_container__icon">
